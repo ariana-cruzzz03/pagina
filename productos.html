@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Birthstone+Bounce&family=Fuggles&family=Lato:wght@100&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Century Gothic" , sans-serif;
+  cursor:url(raton.png), auto;
+}
+
+.titulo{
+    width: 100%;
+    text-align: center;
+}
+
+.poison{
+    font-family: 'Fuggles', cursive;
+    text-align: center;
+    font-size: 110px;
+    font-weight: lighter;
+}
+
+
+.body{
+    margin-left: 78px;
+}
+
+.sidebar{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 78px;
+  background: #9e7575;
+  padding: 6px 14px;
+  z-index: 99;
+  transition: all 0.5s ease;
+}
+.sidebar.open{
+  width: 250px;
+}
+.sidebar .logo-details{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sidebar .logo-details .icon{
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 60px;
+  font-weight: 0;
+  opacity: 0;
+  transition: all 0.5s ease;
+  font-family: 'Fuggles', cursive;
+  margin-left: 45px;
+}
+.sidebar.open .logo-details .icon,
+.sidebar.open .logo-details .logo_name{
+  opacity: 1;
+}
+.sidebar .logo-details #btn{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: all 0.4s ease;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.sidebar.open .logo-details #btn{
+  text-align: right;
+}
+.sidebar i{
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+}
+.sidebar .nav-list{
+  margin-top: 0px;
+  height: 100%;
+}
+.sidebar li{
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+.sidebar li .tooltip{
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
+}
+.sidebar li:hover .tooltip{
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sidebar.open li .tooltip{
+  display: none;
+}
+.sidebar input{
+  font-size: 15px;
+  color: #FFF;
+  font-weight: 400;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  width: 50px;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+  background: #9e7575;
+}
+.sidebar.open input{
+  padding: 0 20px 0 50px;
+  width: 100%;
+}
+.sidebar .bx-search{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  background: #9e7575;
+  color: #FFF;
+}
+.sidebar.open .bx-search:hover{
+  background: #9e7575;
+  color: #FFF;
+}
+.sidebar .bx-search:hover{
+  background: #FFF;
+  color: #9e7575;
+}
+.sidebar li a{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #9e7575;
+}
+.sidebar li a:hover{
+  background: #FFF;
+}
+.sidebar li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+}
+.sidebar.open li a .links_name{
+  opacity: 1;
+  pointer-events: auto;
+}
+.sidebar li a:hover .links_name,
+.sidebar li a:hover i{
+  transition: all 0.5s ease;
+  color: #11101D;
+}
+.sidebar li i{
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  border-radius: 12px;
+}
+.sidebar li.profile{
+  position: fixed;
+  height: 60px;
+  width: 78px;
+  left: 0;
+  bottom: -8px;
+  padding: 10px 14px;
+  background: #9e7575;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+.sidebar.open li.profile{
+  width: 250px;
+}
+.sidebar li .profile-details{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.sidebar li img{
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+.sidebar li.profile .name,
+.sidebar li.profile .job{
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+}
+.sidebar li.profile .job{
+  font-size: 12px;
+}
+.sidebar .profile #log_out{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: #9e7575;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 0px;
+  transition: all 0.5s ease;
+}
+.sidebar.open .profile #log_out{
+  width: 50px;
+  background: none;
+}
+.sidebar.open ~ .home-section{
+  left: 250px;
+  width: calc(100% - 250px);
+}
+.home-section .text{
+  display: inline-block;
+  color: #9e7575;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 18px
+}
+@media (max-width: 420px) {
+  .sidebar li .tooltip{
+    display: none;
+  }
+}
+
+footer{
+    position: absolute;
+    left: 0;
+    background: #9e7575;
+    height: auto;
+    width: 100vw;
+    padding-top: 40px;
+    color: #fff;
+}
+
+.footer-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer-content h3{
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    line-height: 3rem;
+}
+
+.footer-content p{
+    max-width: 300px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 14px;
+}
+
+.socials{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 3rem 0;
+}
+
+.socials li{
+    margin: 0 10px;
+}
+
+.socials a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.socials a i{
+    font-size: 1.1rem;
+    transition: color .4s ease;
+}
+
+.socials a:hover i{
+    color: #f9d6d5;
+}
+
+.footer-bottom{
+    background: #9e7575;
+    width: 100vw;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-bottom p{
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.footer-bottom span{
+    text-transform: uppercase;
+    opacity: -4%;
+    font-weight: 200;
+}
+
+#slider{
+            overflow:hidden;
+        }
+
+        #slider figure{
+            position:relative;
+            width:500%;
+            left:0px;
+            animation: 20s slider infinite;
+        }
+
+        #slider figure img{
+            width: 20%;
+            float:left;
+        }
+
+        @keyframes slider{
+            0%{
+                left:0;
+            }
+            20%{
+                left:0;
+            }
+            25%{
+                left:-100%;
+            }
+            45%{
+                left:-100%;
+            }
+            50%{
+                left:-200%;
+            }
+            70%{
+                left:-200%;
+            }
+            75%{
+                left:-300%;
+            }
+            95%{
+                left:-300%;
+            }
+            100%{
+                left:-400%;
+            }
+        }
+
+        .container{
+            width: 80%;
+            max-width: 1000px;
+            margin-left: 8em;
+            margin-right: auto;
+            margin-top: 3em;
+            margin-bottom: 3em;
+
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+
+        .item{
+            background-color: #fff;
+            cursor: pointer;
+            box-shadow: 0 0 5px 0 rgba(0,0,0,.095);
+
+            transition: all 300ms;
+
+            position: relative;
+        }
+
+
+        .item::after {
+            content: "";
+            background-color: rgba(255, 210, 210, 0.288);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top:0;
+            left: 0;
+            transform: scale(0);
+            transition: all 300ms;
+            opacity: 0;
+        }
+
+        .item:hover:after{
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .item:hover {
+            transform: scale(1.05);
+        }
+
+        .item-text{
+            padding: 1em;
+        }
+
+        .item-text a{
+            text-decoration:none;
+        }
+
+        .item-img{
+            max-width: 100%;
+            display: block;
+            max-height:280px;
+        }
+        
+        h2{
+            text-align: center;
+        }
+
+        @media (min-width:480px){
+            .container{
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width:768px){
+            .container{grid-template-columns: repeat(3, 1fr);}
+        }
+
+        @media (min-width:1024px){
+
+            .container{
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+        }
+
+
+
+
+    </style>
+
+    <title>Inicio | POISON</title>
+
+   </head>
+
+
+<body>
+
+    <div class="body">
+        <div class="titulo">
+            <h1 class="poison">Poison</h1>
+        </div>
+    </div>
+        
+
+  <div class="sidebar">
+    <div class="logo-details">
+        <div class="logo_name" class="poison">Poison</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="index.html">
+          <i class='bx bx-home'></i>
+          <span class="links_name">Inicio</span>
+        </a>
+         <span class="tooltip">Inicio</span>
+      </li>
+      <li>
+        <a href="productos.html">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Productos</span>
+        </a>
+         <span class="tooltip">Productos</span>
+      </li>
+      <li>
+       <a href="registrarse.html">
+         <i class='bx bx-user'></i>
+         <span class="links_name">Login</span>
+       </a>
+       <span class="tooltip">Login</span>
+     </li>
+     <li>
+       <a href="contactanos.html">
+         <i class='bx bx-chat' ></i>
+         <span class="links_name">Contactanos</span>
+       </a>
+       <span class="tooltip">Contáctanos</span>
+     </li>
+    </ul>
+  </div>
+  <script>
+  let sidebar = document.querySelector(".sidebar");
+  let closeBtn = document.querySelector("#btn");
+  let searchBtn = document.querySelector(".bx-search");
+
+  closeBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    menuBtnChange();
+  });
+
+  searchBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    menuBtnChange();
+  });
+
+  function menuBtnChange() {
+   if(sidebar.classList.contains("open")){
+     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+   }else {
+     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");
+   }
+  }
+  </script>
+
+<div id="slider">
+    <figure>
+        <img src="slide1.png">
+        <img src="slide2.png">
+        <img src="slide3.png">
+        <img src="slide4.png">
+        <img src="slide1.png">
+    </figure>
+</div>
+
+<h2>PRODUCTOS</h2>
+
+    <div class="container">
+
+        <div class="item">
+            <img src="item1.jpg" alt="" class="item-img">
+            <div class="item-text">
+                <h3>White Musk</h3>
+                <p>$ 379.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item2.jpg" alt="" class="item-img">
+            <div class="item-text">
+                <h3>Lady Adore</h3>
+                <p>$ 199.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item3.jpg" alt="" class="item-img">
+            <div class="item-text">
+                <h3>Gold Impact</h3>
+                <p>$ 446.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item4.jpg" alt="" class="item-img">
+            <div class="item-text">
+                <h3>Bright Blue</h3>
+                <p>$ 227.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item5.jpg" alt="" class="item-img">
+            <div class="item-text">
+                <h3>Light Crystal</h3>
+                <p>$ 349.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item6.jpg" alt="" class="item-img">
+            <div class="item-text">
+                <h3>Infinite Touch</h3>
+                <p>$ 299.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item7.png" alt="" class="item-img">
+            <div class="item-text">
+                <h3>White Pachouli</h3>
+                <p>$ 249.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item8.webp" alt="" class="item-img">
+            <div class="item-text">
+                <h3>Agua Fresca de Rosas</h3>
+                <p>$ 109.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item9.webp" alt="" class="item-img">
+            <div class="item-text">
+                <h3>La Vie Est Belle</h3>
+                <p>$ 300.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item10.webp" alt="" class="item-img">
+            <div class="item-text">
+                <h3>Yes, I am</h3>
+                <p>$ 245.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item11.webp" alt="" class="item-img">
+            <div class="item-text">
+                <h3>CK One</h3>
+                <p>$ 290.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item12.webp" alt="" class="item-img">
+            <div class="item-text">
+                <h3>Avión Cantante</h3>
+                <p>L. 1,800.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item13.webp" alt="" class="item-img">
+            <div class="item-text">
+                <h3>Agua de Loewe</h3>
+                <p>$ 250.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item14.webp" alt="" class="item-img">
+            <div class="item-text">
+                <h3>Black Opium</h3>
+                <p>$ 290.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item15.webp" alt="" class="item-img">
+            <div class="item-text">
+                <h3>Eau de Rochas</h3>
+                <p>$ 200.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="item16.webp" alt="" class="item-img">
+            <div class="item-text">
+                <h3>Eau de Toilette</h3>
+                <p>$ 180.00</p>
+                <a href="">Comprar</a>
+            </div>
+        </div>
+
+    </div>
+    
+
+  <footer>
+      <div class="footer-content">
+          <h3 class="poison">Poison</h3>
+          <p>La belleza de la fragancia es que le habla a tu corazón... y, con suerte, al de otra persona.</p>
+          <ul class="socials">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+              <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+          </ul>
+      </div>
+      <div class="footer-bottom">
+          <p>copyright &copy; 2020 Todos lo derechos reservados</p>
+      </div>
+  </footer>
+
+</body>
+</html>
